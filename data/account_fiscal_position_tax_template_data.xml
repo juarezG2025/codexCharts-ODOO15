@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ahora defino las posiciones fiscales -->
+    <record id="little_taxpayer" model="account.fiscal.position.template">
+        <field name="name">Contribuyente</field>
+        <field name="chart_template_id" ref="account_templates"/>
+    </record>
+
+    <record id="big_taxpayer" model="account.fiscal.position.template">
+        <field name="name">Gran Contribuyente</field>
+        <field name="chart_template_id" ref="account_templates"/>
+    </record>
+
+    <!-- Ahora establezco las relaciones entre posicion e impuesto -->
+    <!-- Pequeño Contribuyente -->
+    <!-- Ventas -->
+    <record id="lt_sale_iva" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="little_taxpayer" />
+        <field name="tax_src_id" ref="sale_iva" />
+        <field name="tax_dest_id" ref="sale_iva" />
+    </record>
+    <record id="lt_sale_per" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="little_taxpayer" />
+        <field name="tax_src_id" ref="sale_iva" />
+        <field name="tax_dest_id" ref="sale_iva_per" />
+    </record>
+    <!-- Compra -->
+    <record id="lt_purchase_iva" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="little_taxpayer" />
+        <field name="tax_src_id" ref="purchase_iva" />
+        <field name="tax_dest_id" ref="purchase_iva" />
+    </record>
+    <record id="lt_purchase_ret" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="little_taxpayer" />
+        <field name="tax_src_id" ref="purchase_iva" />
+        <field name="tax_dest_id" ref="purchase_iva_ret" />
+    </record>
+
+    <!-- Gran Contribuyente -->
+    <!-- Ventas -->
+    <record id="bt_sale_iva" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="big_taxpayer" />
+        <field name="tax_src_id" ref="sale_iva" />
+        <field name="tax_dest_id" ref="sale_iva" />
+    </record>
+    <record id="bt_sale_ret" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="big_taxpayer" />
+        <field name="tax_src_id" ref="sale_iva" />
+        <field name="tax_dest_id" ref="sale_iva_ret" />
+    </record>
+    <!-- Compro -->
+    <record id="bt_purchase_iva" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="big_taxpayer" />
+        <field name="tax_src_id" ref="purchase_iva" />
+        <field name="tax_dest_id" ref="purchase_iva" />
+    </record>
+    <record id="bt_purchase_per" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="big_taxpayer" />
+        <field name="tax_src_id" ref="purchase_iva" />
+        <field name="tax_dest_id" ref="purchase_iva_per" />
+    </record>
+</odoo>

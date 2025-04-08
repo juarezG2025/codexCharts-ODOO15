@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Etiquetas para el IVA -->
+        <record id="tax_tag_iva_charge" model="account.account.tag">
+            <field name="name">IVA por Cobrar</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tax_tag_iva_paid" model="account.account.tag">
+            <field name="name">IVA por Pagar</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!--Etiquetas para el CESC-->
+        <record id="tax_tag_cesc_charge" model="account.account.tag">
+            <field name="name">CESC por Cobrar</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tax_tag_cesc_paid" model="account.account.tag">
+            <field name="name">CESC por Pagar</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!--Etiquetas para el Tránsito-->
+        <record id="tax_tag_transit_charge" model="account.account.tag">
+            <field name="name">Tránsito por Cobrar</field>
+            <field name="applicability">taxes</field>
+        </record>
+        <record id="tax_tag_transit_paid" model="account.account.tag">
+            <field name="name">Tránsito por Pagar</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Compras e IVA por Cobrar -->
+        <record id="purchase_iva" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA Compra</field>
+            <field name="description">IVA Compra</field>
+            <field name="amount" eval="13"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+       
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Ventas e IVA por Pagar -->
+        <record id="sale_iva" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA</field>
+            <field name="description">IVA</field>
+            <field name="amount" eval="13"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+            
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Compras e IVA Percibido por Cobrar -->
+        <record id="purchase_iva_per" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA Compra Percibido</field>
+            <field name="description">IVA Compra Percibido</field>
+            <field name="amount" eval="1"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+         
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Ventas e IVA Percibido por Pagar -->
+        <record id="sale_iva_per" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA Percibido</field>
+            <field name="description">IVA Percibido</field>
+            <field name="amount" eval="1"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+          
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Compras e IVA Retenido por Cobrar -->
+        <record id="purchase_iva_ret" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA Compra Retenido</field>
+            <field name="description">IVA Compra Retenido</field>
+            <field name="amount" eval="-1"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+           
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Ventas e IVA Retenido por Pagar -->
+        <record id="sale_iva_ret" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">IVA Retenido</field>
+            <field name="description">IVA Retenido</field>
+            <field name="amount" eval="-1"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+             
+            <field name="tax_group_id" ref="tax_group_iva"/>
+        </record>
+
+        <!-- Compras y CESC por Cobrar -->
+        <record id="purchase_cesc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">CESC Compra</field>
+            <field name="description">CESC Compra</field>
+            <field name="amount" eval="5"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+            
+            <field name="tax_group_id" ref="tax_group_cesc"/>
+        </record>
+
+        <!-- Ventas y CESC por Pagar -->
+        <record id="sale_cesc" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">CESC</field>
+            <field name="description">CESC</field>
+            <field name="amount" eval="5"/>
+            <field name="amount_type">percent</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+             
+            <field name="tax_group_id" ref="tax_group_cesc"/>
+        </record>
+
+        <!-- Compras y FOVIAL por Cobrar -->
+        <record id="purchase_fovial" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">FOVIAL Compra</field>
+            <field name="description">FOVIAL Compra</field>
+            <field name="amount" eval="0.20"/>
+            <field name="amount_type">fixed</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+             
+            <field name="tax_group_id" ref="tax_group_transit"/>
+        </record>
+
+        <!-- Ventas y FOVIAL por Pagar -->
+        <record id="sale_fovial" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">FOVIAL</field>
+            <field name="description">FOVIAL</field>
+            <field name="amount" eval="0.20"/>
+            <field name="amount_type">fixed</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+            
+            <field name="tax_group_id" ref="tax_group_transit"/>
+        </record>
+
+        <!-- Compras y COTRANS por Cobrar -->
+        <record id="purchase_cotrans" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">COTRANS Compra</field>
+            <field name="description">COTRANS Compra</field>
+            <field name="amount" eval="0.10"/>
+            <field name="amount_type">fixed</field>            
+            <field name="type_tax_use">purchase</field>
+            <field name="price_include" eval="False"/>
+             
+            <field name="tax_group_id" ref="tax_group_transit"/>
+        </record>
+
+        <!-- Ventas y COTRANS por Pagar -->
+        <record id="sale_cotrans" model="account.tax.template">
+            <field name="chart_template_id" ref="account_templates"/>
+            <field name="name">COTRANS</field>
+            <field name="description">COTRANS</field>
+            <field name="amount" eval="0.10"/>
+            <field name="amount_type">fixed</field>            
+            <field name="type_tax_use">sale</field>
+            <field name="price_include" eval="False"/>
+             
+            <field name="tax_group_id" ref="tax_group_transit"/>
+        </record>
+
+
+        
+    </data>
+</odoo>

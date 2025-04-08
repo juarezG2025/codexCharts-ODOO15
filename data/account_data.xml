@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Account Tax Group -->
+        <record id="tax_group_iva" model="account.tax.group">
+            <field name="name">IVA</field>
+        </record>
+
+        <record id="tax_group_cesc" model="account.tax.group">
+            <field name="name">CESC</field>
+        </record>
+
+        <record id="tax_group_transit" model="account.tax.group">
+            <field name="name">Tránsito</field>
+        </record>
+    </data>
+</odoo>
